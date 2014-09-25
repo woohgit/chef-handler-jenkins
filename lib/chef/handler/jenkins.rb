@@ -30,8 +30,7 @@ class Chef
             # res.checksum is SHA1 sum
           end
 
-          if res.class == Chef::Resource::SaladJenkinsTracking
-            # TODO is this a good way to check the class name?
+          if defined? Chef::Resource::SaladJenkinsTracking and res.kindof? Chef::Resource::SaladJenkinsTracking
             updates << {
                 "path" => res.path,
                 "md5" => res.checksum,
